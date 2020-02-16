@@ -2,51 +2,21 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css?family=Acme|Lato&display=swap" rel="stylesheet" />
-  <title>Student list</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Cleaning Hogwarts Data</title>
 </head>
 
 <body>
-  <script src="script.js"></script>
-
-  <!-- how info of one student looks like on the list -->
-  <template>
-    <div class="container">
-      <img src="" alt="" />
-      <h2 class="name"></h2>
-      <div class="seestudent"></div>
-    </div>
-  </template>
-
-  <!--Pop-up window, showing detailed information of one painting-->
-  <div class="popup">
-    <button class="close">X</button>
-    <section id="onestudent">
-      <img src="" alt="" />
-      <h2></h2>
-      <p></p>
-      <!-- <label id="theme-changer">
-        Choose theme
-        <select name="theme" id="theme">
-          <!-- <option value="" class="" selected>Select</option> -->
-      <!-- <option value="gryffindor" class="gryffindor">Gryffindor theme</option>
-      <option value="hufflepuff" class="hufflepuff">Hufflepuff theme</option>
-      <option value="ravenclaw" class="ravenclaw">Ravenclaw theme</option>
-      <option value="slytherin" class="slytherin">Slytherin theme</option>
-      </select>
-      </label> -->
-    </section>
-  </div>
-
-  <!-- Container for the student list -->
-  <article>
-    <h1>Students at Hogwarts anno 1991</h1>
-    <section id="contentlist"></section>
-  </article>
+    <h1>Students at Hogwarts</h1>
+    <section id="list"></section>
+    <template id="student">
+        <h2 data-field="fullname"></h2>
+        <p data-field="gender"></p>
+        <p data-field="house"></p>
+    </template>
+    <script src="script.js"></script>
 </body>
 
 </html>

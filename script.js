@@ -1,67 +1,41 @@
-window.addEventListener("DOMContentLoaded", start);
+"use strict";
 
-const studentlist = "students1991.json";
-let students = [];
-let selecedIndex = 0;
+window.addEventListener("DOMContentLoaded", init);
+let students;
 
-function start() {
-  console.log("start");
-  getStudents();
-}
-async function getStudents() {
-  console.log("getStudents");
-  const response = await fetch(studentlist);
-  students = await response.json();
-
-  showAllStudents();
+function init() {
+    console.log("init");
+    loadJson();
 }
 
-function showAllStudents() {
-  const pattern = document.querySelector("template");
-  const list = document.querySelector("#contentlist");
-
-  students.forEach(student => {
-    const clone = pattern.cloneNode(true).content;
-    clone.querySelector(".name").textContent = `${student.fullname}`;
-    list.appendChild(clone);
-
-    // click event for one student
-    list.lastElementChild.addEventListener("click", () => {
-      showOneStudent(student);
-    });
-  });
+function loadJson() {
+    fetch("https://petlatkea.dk/2020/hogwarts/students.json")
+        .then(response => response.json())
+        .then(jsonData => {
+            students = jsonData;
+            // when loaded, display the list
+            displayList();
+        })
 }
 
-function showOneStudent(student) {
-  document.querySelector(".popup").style.display = "block"
+function displayList() {
+    // clear the list
+    document.querySelector("#list").innerHTML = "";
 
-  document.querySelector(".close").addEventListener("click", closePopUp);
-  //selectATheme();
-
-  document.querySelector("#onestudent h2").textContent = student.fullname;
-  document.querySelector("#onestudent p").textContent =
-    "House: " + student.house;
-  //show the theme according (dataset has the same value as json object)
-  document.querySelector(".popup").dataset.theme = student.house;
-
+    // build a new list
+    students.forEach(displayStudent);
 }
 
-function closePopUp() {
-  document.querySelector(".popup").style.display = "none";
+function displayStudent(student) {
+    // create clone
+    const clone = document.querySelector("template#student").content.cloneNode(true);
+
+    // set clone data
+    clone.querySelector("[data-field=fullname]").textContent = student.fullname;
+    clone.querySelector("[data-field=gender]").textContent = student.gender;
+    clone.querySelector("[data-field=house]").textContent = student.house;
+
+    // append clone to list
+    document.querySelector("#list").appendChild(clone);
 
 }
-
-// function selectATheme() {
-//   console.log("selectATheme");
-//   //set options back to null
-//   //document.querySelector("select#theme").options[0].selected = "selected";
-
-//   document.querySelector("select#theme").addEventListener("change", selected);
-// }
-
-// function selected() {
-//   console.log("selected");
-//   const selectedTheme = this.value;
-
-//   //document.querySelector(".popup").dataset.theme = selectedTheme;
-// }
