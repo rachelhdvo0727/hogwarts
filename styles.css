@@ -1,0 +1,145 @@
+:root {
+  --bg-gradient1: rgb(255, 255, 255);
+  --bg-gradient2: linear-gradient(141deg, rgba(98, 89, 89, 1) 0%, rgba(8, 63, 75, 1) 54%);
+  --font-h1-h2: "Acme", sans-serif;
+  --font-text: "Lato", sans-serif;
+  --bg-info-color: beige;
+  --text-color: black;
+}
+
+* {
+  margin: 0 auto;
+  padding: 0;
+  line-height: inherit;
+  box-sizing: border-box;
+}
+
+[data-theme="Gryffindor"] {
+  --bg-gradient1: rgb(127, 9, 9);
+  --bg-gradient2: linear-gradient(141deg, rgba(127, 9, 9, 1) 0%, rgba(255, 197, 0, 1) 54%);
+}
+
+[data-theme="Hufflepuff"] {
+  --bg-gradient1: rgb(0, 0, 0);
+  --bg-gradient2: linear-gradient(25deg, rgba(0, 0, 0, 1) 0%, rgba(85, 81, 8, 1) 39%, rgba(238, 225, 23, 1) 81%);
+}
+
+[data-theme="Ravenclaw"] {
+  --bg-gradient1: rgb(0, 0, 0);
+  --bg-gradient2: linear-gradient(172deg, rgba(0, 0, 0, 1) 12%, rgba(148, 107, 37, 1) 47%);
+}
+
+[data-theme="Slytherin"] {
+  --bg-gradient1: rgb(0, 52, 7);
+  --bg-gradient2: linear-gradient(90deg, rgba(0, 52, 7, 1) 0%, rgba(199, 199, 199, 1) 100%);
+}
+
+/* label {
+  cursor: pointer;
+} */
+
+h1,
+h2 {
+  font-family: var(--font-h1-h2);
+  color: var(--text-color);
+  text-align: center;
+  padding: 1vw;
+}
+
+p {
+  font-family: var(--font-text);
+  color: var(--text-color);
+  padding: 1vw;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+article {
+  padding: 3vw;
+}
+
+#contentlist {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 3vw;
+  padding: 3vw;
+}
+
+.container {
+  flex-grow: 1;
+  flex-basis: 30vw;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  margin: 2vw;
+  padding: 3vw;
+  cursor: pointer;
+  background-color: beige;
+}
+
+.seestudent {
+  background-image: url(right-arrow.svg);
+  background-size: 100%;
+  margin: 0;
+  width: 2.4vw;
+  height: 2vw;
+  align-self: flex-end;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--bg-gradient1);
+  background: var(--bg-gradient2);
+  color: var(--text-color);
+}
+
+#onestudent {
+  width: 70vw;
+  min-height: 50vh;
+  padding: 3vw;
+  margin: 15vw auto;
+  background-color: var(--bg-info-color);
+}
+
+.close {
+  position: fixed;
+  right: 2vw;
+  top: 2vw;
+  font-size: 3.5vw;
+  color: var(--text-color);
+}
+
+@media screen and (min-width: 780px) {
+  #contentlist {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1.5vw;
+    /* column-count: 3; */
+  }
+
+  .container {
+    margin: 0;
+  }
+
+  .close {
+    font-size: 3vw;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #contentlist {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .close {
+    font-size: 2vw;
+  }
+}
