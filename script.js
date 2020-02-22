@@ -120,6 +120,8 @@ function displayStudent(student) {
 
 function popUpOne(student) {
     HTML.popup.style.display = "block";
+    //show the theme according (dataset has the same value as json object)
+    HTML.popup.dataset.theme = student.house;
     HTML.closepopup.addEventListener("click", closePopUp);
 
     document.querySelector("[data-field=firstname]").textContent = student.firstname;
