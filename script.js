@@ -110,7 +110,7 @@ function displayStudent(student) {
     clone.querySelector("[data-field=house]").textContent = student.house;
 
     // append clone to list
-    document.querySelector("#contentlist").appendChild(clone);
+    HTML.thelist.appendChild(clone);
 
     // click event for one student
     HTML.thelist.lastElementChild.addEventListener("click", () => {
