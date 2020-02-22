@@ -86,8 +86,7 @@ function prepareObject(jsonObject) {
   student.nickname = nickName;
   student.house = capHouse;
   student.gender = gender;
-
-  console.log(student);
+  
   return student;
 }
 
