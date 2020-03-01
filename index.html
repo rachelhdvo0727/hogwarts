@@ -7,48 +7,108 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Acme|Lato&display=swap" rel="stylesheet">
-    <title>Student list</title>
+    <title>Hogwarts' Students</title>
 </head>
 
 <body>
-    <script src="script.js"></script>
-
     <!-- how info of one student looks like on the list -->
-    <template id="onestudent">
+    <template id="studentbox">
         <div class="container">
-            <img src="" alt="">
-            <h2 class="firstname" data-field="firstname"></h2>
-            <h2 class="lastname" data-field="lastname"></h2>
+            <img class="studentphoto" src="" alt="">
+            <h2 data-field="firstname"></h2>
+            <h2 data-field="lastname"></h2>
             <p data-theme="" data-field="house"></p>
             <div class="seestudent"></div>
         </div>
     </template>
 
+    <!-- Dialogs for handling too many prefects -->
+    <div id="onlytwostudents" class="dialog">
+        <div class="dialogcontent">
+            <button class="closebutton">✕</button>
+            <h1>Oops! </h1>
+            <p>Only a girl and a boy of each house can be selected!</p>
+            <p>Remove one, before you appoint more</p>
+            <p>
+                <span class="student1">firstname lastname, house</span> <button data-action="remove1">Remove</button>
+            </p>
+            <p>
+                <span class="student2">firstname lastname, house</span> <button data-action="remove2">Remove</button>
+            </p>
+        </div>
+    </div>
+
     <!--Pop-up window, showing detailed information of one painting-->
     <div class="popup">
-        <button class="close">X</button>
+        <button class="close">✕</button>
         <section id="onestudent">
-            <img src="" alt="">
-            <h2 class="firstname" data-field="firstname"></h2>
-            <h2 class="middlename" data-field="middlename"></h2>
-            <h2 class="lastname" data-field="lastname"></h2>
-            <h2 class="nickname" data-field="nickname"></h2>
-            <p data-field="gender"></p>
-            <p data-field="house"></p>
+            <div class="rowtop">
+                <img src="" class="photo" data-field="photo" alt="">
+                <div class="right">
+                    <h2 class="firstname" data-field="firstname"></h2>
+                    <h2 class="middlename" data-field="middlename"></h2>
+                    <h2 class="lastname" data-field="lastname"></h2>
+                    <h2 class="nickname" data-field="nickname"></h2>
+                </div>
+            </div>
+            <div class="rowbottom">
+                <p data-field="gender"></p>
+                <p data-field="house"></p>
+                <p data-field="bloodstatus"></p>
+                <p data-field="squad" data-prefect="false">Inquisitorial squad: 🎖</p>
+                <p data-field="squad" class="squadnote">Only pureblooded students and students from Slytherin
+                    house
+                </p>
+                <p data-field="prefect" data-prefect="false">Prefect: 🏆</p>
+                <button data-action="expell" class="expell">Expell this student</button>
+                <p data-field="expell"></p>
+                <div class="housecrest"></div>
+            </div>
         </section>
     </div>
 
     <!-- Container for the student list -->
     <article>
-        <h1>Students at Hogwarts anno 1991</h1>
-        <!-- <div class="sorting">
-            <button>Gryffindor</button>
-            <button>Hufflepuff</button>
-            <button>Ravenclaw</button>
-            <button>Slytherin</button>
-        </div> -->
+        <h1 class="title">Hogwarts' student list 1991</h1>
+        <section id="about">
+            <p class="gryffindor" data-filter="gryffindor"></p>
+            <p class="hufflepuff" data-filter="hufflepuff"></p>
+            <p class="ravenclaw" data-filter="ravenclaw"></p>
+            <p class="slytherin" data-filter="slytherin"></p>
+            <p class="totalstudents"></p>
+            <p class="expelledstudents">Expelled: <span class="number">0</span> students</p>
+        </section>
+        <div id="settings">
+            <div id="searchelms">
+                <div class="searchicon"></div>
+                <input type="search" name="searchbar" class="searchbar" placeholder="search">
+            </div>
+            <div id="filterandsort">
+                <label for="filter">Filter by house: </label>
+                <select name="housefilter" id="housefilter">
+                    <option value="*" class="filter" data-action="filter" data-filter="*">Choose a house</option>
+                    <option value="Slytherin" data-filter="slytherin">Slytherin</option>
+                    <option value="Gryffindor" data-filter="gryffindor">Gryffindor</option>
+                    <option value="Ravenclaw" data-filter="ravenclaw">Ravenclaw</option>
+                    <option value="Hufflepuff" data-filter="hufflepuff">Hufflepuff</option>
+                </select>
+                <div id="sortbuttons"> <label for="sort">Sort by:</label>
+                    <button data-action="sort" data-sort-direction="asc" data-sort="firstname">First
+                        name</button>
+                    <button data-action="sort" data-sort-direction="asc" data-sort="lastname">Last name</button>
+                </div>
+            </div>
+        </div>
         <section id="contentlist"></section>
     </article>
+    <footer>
+        <p>Made by Rachel</p>
+        <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a
+                href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        <div>Images from <a href="https://ya-webdesign.com/?utm_source=pack&utm_campaign=retention">Ya-webdesign.com</a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>
